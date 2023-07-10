@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#64e6b0, #13bcff);
+    padding: 24px;
+}
+
+main{
+    background: #ffffff;
+    border-radius: 48px;
+    padding: 48px 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1280px;
+}
+
+h1{
+    font-family: "Epilogue";
+    font-weight: 700;
+    font-size: 48px;
+    color: #3eb181;
+}
+
+.container{
+    display: flex;
+}
+
+section{
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+section + section {
+    border-left: 1px solid rgb(190, 190, 190);
+}
+
+button {
+    border:none;
+    background: #3eb181;
+    padding: 8px 16px;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: "Epilogue";
+    font-weight: 500;
+}
