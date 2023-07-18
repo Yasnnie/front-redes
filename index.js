@@ -1,5 +1,7 @@
 let counter = 0
 
+const link = "http://18.222.225.100:3001"
+
 function createLine(text) {
     const line = document.createElement("li")
     line.innerHTML = `${text}`
@@ -8,7 +10,7 @@ function createLine(text) {
 }
 
 function handleListarSqs() {
-    fetch('http://localhost:3001/reciveMessageSQS')
+    fetch(`${link}/reciveMessageSQS`)
         .then(data => {
             return data.json();
         })
@@ -42,7 +44,7 @@ function handleCreatePost() {
         body: JSON.stringify(update),
     }
 
-    fetch('http://localhost:3001/sendMessageSQS', options).then(() => {
+    fetch(`${link}sendMessageSQS`, options).then(() => {
         counter += 1;
     })
 }
