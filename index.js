@@ -44,7 +44,7 @@ function handleCreatePost() {
         body: JSON.stringify(update),
     }
 
-    fetch(`${link}sendMessageSQS`, options).then(() => {
+    fetch(`${link}/sendMessageSQS`, options).then(() => {
         counter += 1;
     })
 }
