@@ -1,29 +1,30 @@
 let counter = 0
 
-function handleTeste() {
-    console.log("teste")
-}
-
-function createLine(post) {
+function createLine(text) {
     const line = document.createElement("li")
-    line.innerHTML = `${post.id} - ${post.title}`
+    line.innerHTML = `${text}`
 
     return line
 }
 
 function handleListarSqs() {
-    fetch('http://localhost:3001/tasks')
+    fetch('http://localhost:3001/reciveMessageSQS')
         .then(data => {
             return data.json();
         })
-        .then(posts => {
+        .then(data => {
             const list = document.getElementById("list-sqs")
             list.innerHTML = ""
-
-            posts.map((item) => {
-                let line = createLine(item)
+            if (data.message) {
+                let line = createLine(data.message)
                 list.appendChild(line)
-            })
+            } else {
+                data.list.map((item) => {
+                    let line = createLine(`${item.MessageId} - ${item.Body}`)
+                    list.appendChild(line)
+                })
+            }
+
         });
 }
 
@@ -31,7 +32,7 @@ function handleCreatePost() {
     console.log(counter)
     const update = {
         title: `Qualquer coisa: ${counter}`,
-        };
+    };
 
     const options = {
         method: 'POST',
@@ -41,7 +42,7 @@ function handleCreatePost() {
         body: JSON.stringify(update),
     }
 
-    fetch('http://localhost:3001/tasks', options).then(()=> {
-        counter +=1;
+    fetch('http://localhost:3001/sendMessageSQS', options).then(() => {
+        counter += 1;
     })
 }
